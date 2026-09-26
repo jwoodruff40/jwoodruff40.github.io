@@ -1,8 +1,10 @@
 {
+  "_note": "Ignored extender by ID with title for reference. Extenders may be manually ignored due to various reasons including questionable content, incompatibility, or irrelevance.",
   "extenders-ignore": [
     {
         "id": "3548274325",
-        "title": "[A3UE] UnseenKill Mods Shared Code"
+        "title": "[A3UE] UnseenKill Mods Shared Code",
+        "_comment": "Not an extender in the traditional sense, just a base for other mods."
     }
   ]
 }
