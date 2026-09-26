@@ -19,9 +19,12 @@ if (!API_KEY) {
     process.exit(1);
 }
 
-// EPublishedFileQueryType values (see Steamworks SDK ISteamRemoteStorage.h)
-const QUERY_TYPE_RANKED_BY_PUBLICATION_DATE = 1;
-const QUERY_TYPE_RANKED_BY_TOTAL_UNIQUE_SUBSCRIPTIONS = 9;
+// EPublishedFileQueryType values (see Steamworks SDK ISteamRemoteStorage.h).
+// NOTE: search_text is only honored server-side by RankedByTextSearch (12) — other
+// query types (e.g. RankedByPublicationDate, RankedByTotalUniqueSubscriptions) ignore
+// it entirely and just return their normal global ranking, unfiltered.
+const QUERY_TYPE_RANKED_BY_TEXT_SEARCH = 12;
+const SEARCH_RESULT_COUNT = 100;
 
 async function queryFiles(queryType, numPerPage) {
     const params = new URLSearchParams({
@@ -71,13 +74,14 @@ function toFeaturedEntry(item, category) {
 }
 
 async function main() {
-    const [newestRaw, popularRaw] = await Promise.all([
-        queryFiles(QUERY_TYPE_RANKED_BY_PUBLICATION_DATE, 50),
-        queryFiles(QUERY_TYPE_RANKED_BY_TOTAL_UNIQUE_SUBSCRIPTIONS, 50)
-    ]);
+    const results = await queryFiles(QUERY_TYPE_RANKED_BY_TEXT_SEARCH, SEARCH_RESULT_COUNT);
+    const matches = results.filter(isExtender);
 
-    const newest = newestRaw.filter(isExtender).slice(0, NEWEST_COUNT).map(item => toFeaturedEntry(item, 'new'));
-    const popular = popularRaw.filter(isExtender).slice(0, POPULAR_COUNT).map(item => toFeaturedEntry(item, 'popular'));
+    const byNewest = [...matches].sort((a, b) => (b.time_created ?? 0) - (a.time_created ?? 0));
+    const byPopular = [...matches].sort((a, b) => (b.subscriptions ?? 0) - (a.subscriptions ?? 0));
+
+    const newest = byNewest.slice(0, NEWEST_COUNT).map(item => toFeaturedEntry(item, 'new'));
+    const popular = byPopular.slice(0, POPULAR_COUNT).map(item => toFeaturedEntry(item, 'popular'));
 
     const seen = new Set();
     const featured = [];
