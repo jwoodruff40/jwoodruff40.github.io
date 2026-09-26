@@ -71,6 +71,50 @@
     }
 
     // -------------------------------------------------------------------------
+    // Featured Extenders
+    // -------------------------------------------------------------------------
+
+    function createExtenderCard(item) {
+        const badge = item.category === 'popular' ? 'Popular' : 'New';
+        const image = item.image
+            ? `<img src="${escAttr(item.image)}" alt="${escAttr(item.title)}" loading="lazy">`
+            : '';
+        return `<a class="extender-card" href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer">
+            <div class="extender-card-image-wrap">
+                <span class="extender-card-badge">${esc(badge)}</span>
+                ${image}
+            </div>
+            <div class="extender-card-body">
+                <h3 class="extender-card-title">${esc(item.title)}</h3>
+                <p class="extender-card-description">${esc(item.description || '')}</p>
+            </div>
+        </a>`;
+    }
+
+    function renderExtenders(data) {
+        const scroller = document.getElementById('extenders-scroller');
+        const emptyMsg = document.getElementById('extenders-empty');
+        const items = (data && data.extenders) || [];
+        if (!scroller) return;
+        if (items.length === 0) {
+            scroller.hidden = true;
+            if (emptyMsg) emptyMsg.hidden = false;
+            return;
+        }
+        scroller.innerHTML = items.map(createExtenderCard).join('');
+    }
+
+    function initExtendersScroller() {
+        const scroller = document.getElementById('extenders-scroller');
+        const left = document.querySelector('.extenders-arrow.left');
+        const right = document.querySelector('.extenders-arrow.right');
+        if (!scroller || !left || !right) return;
+        const scrollAmount = () => Math.max(scroller.clientWidth * 0.8, 260);
+        left.addEventListener('click', () => scroller.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+        right.addEventListener('click', () => scroller.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+    }
+
+    // -------------------------------------------------------------------------
     // Mod link helpers
     // -------------------------------------------------------------------------
 
@@ -227,6 +271,7 @@
     // -------------------------------------------------------------------------
 
     async function init() {
+        initExtendersScroller();
         try {
             const [maps, mods] = await Promise.all([
                 fetch('/data/maps.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
@@ -236,6 +281,13 @@
             renderMods(mods);
         } catch (err) {
             console.error('Failed to load page data:', err);
+        }
+
+        try {
+            const extenders = await fetch('/data/extenders.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
+            renderExtenders(extenders);
+        } catch (err) {
+            console.error('Failed to load featured extenders:', err);
         }
     }
 
