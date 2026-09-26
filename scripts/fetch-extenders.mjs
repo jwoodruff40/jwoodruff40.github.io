@@ -53,6 +53,21 @@ function isExtender(item) {
     return typeof item.title === 'string' && A3UE_TAG_REGEX.test(item.title);
 }
 
+async function loadIgnoredIds(dataDir) {
+    const fs = await import('node:fs/promises');
+    const path = await import('node:path');
+    const ignorePath = path.join(dataDir, 'extenders-ignore.json');
+    try {
+        const raw = await fs.readFile(ignorePath, 'utf8');
+        const parsed = JSON.parse(raw);
+        const entries = parsed['extenders-ignore'] ?? [];
+        return new Set(entries.map(entry => String(entry.id)));
+    } catch (err) {
+        if (err.code === 'ENOENT') return new Set();
+        throw err;
+    }
+}
+
 function truncate(text, maxLen) {
     if (!text) return '';
     const clean = text.replace(/\s+/g, ' ').trim();
@@ -74,8 +89,16 @@ function toFeaturedEntry(item, category) {
 }
 
 async function main() {
-    const results = await queryFiles(QUERY_TYPE_RANKED_BY_TEXT_SEARCH, SEARCH_RESULT_COUNT);
-    const matches = results.filter(isExtender);
+    const fs = await import('node:fs/promises');
+    const path = await import('node:path');
+    const url = await import('node:url');
+    const dataDir = path.join(path.dirname(url.fileURLToPath(import.meta.url)), '..', 'data');
+
+    const [results, ignoredIds] = await Promise.all([
+        queryFiles(QUERY_TYPE_RANKED_BY_TEXT_SEARCH, SEARCH_RESULT_COUNT),
+        loadIgnoredIds(dataDir)
+    ]);
+    const matches = results.filter(item => isExtender(item) && !ignoredIds.has(String(item.publishedfileid)));
 
     const byNewest = [...matches].sort((a, b) => (b.time_created ?? 0) - (a.time_created ?? 0));
     const byPopular = [...matches].sort((a, b) => (b.subscriptions ?? 0) - (a.subscriptions ?? 0));
@@ -98,10 +121,7 @@ async function main() {
         extenders: featured
     };
 
-    const fs = await import('node:fs/promises');
-    const path = await import('node:path');
-    const url = await import('node:url');
-    const outPath = path.join(path.dirname(url.fileURLToPath(import.meta.url)), '..', 'data', 'extenders.json');
+    const outPath = path.join(dataDir, 'extenders.json');
     await fs.writeFile(outPath, `${JSON.stringify(output, null, 2)}\n`);
     console.log(`Wrote ${featured.length} featured extenders to ${outPath}`);
 }

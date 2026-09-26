@@ -105,13 +105,32 @@
     }
 
     function initExtendersScroller() {
+        const wrapper = document.querySelector('.extenders-scroller-wrapper');
         const scroller = document.getElementById('extenders-scroller');
         const left = document.querySelector('.extenders-arrow.left');
         const right = document.querySelector('.extenders-arrow.right');
-        if (!scroller || !left || !right) return;
+        if (!scroller || !left || !right || !wrapper) return;
+
         const scrollAmount = () => Math.max(scroller.clientWidth * 0.8, 260);
         left.addEventListener('click', () => scroller.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
         right.addEventListener('click', () => scroller.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+
+        // Autoplay: continuously scroll right, looping back to the start. Paused on hover.
+        const AUTO_SCROLL_PX_PER_FRAME = 0.6;
+        let paused = false;
+
+        function step() {
+            const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+            if (!paused && maxScroll > 0) {
+                scroller.scrollLeft = scroller.scrollLeft >= maxScroll - 1 ? 0 : scroller.scrollLeft + AUTO_SCROLL_PX_PER_FRAME;
+            }
+            requestAnimationFrame(step);
+        }
+
+        wrapper.addEventListener('mouseenter', () => { paused = true; });
+        wrapper.addEventListener('mouseleave', () => { paused = false; });
+
+        requestAnimationFrame(step);
     }
 
     // -------------------------------------------------------------------------
