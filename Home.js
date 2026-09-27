@@ -116,19 +116,27 @@
         right.addEventListener('click', () => scroller.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
 
         // Autoplay: continuously scroll right, looping back to the start. Paused on hover.
-        const AUTO_SCROLL_PX_PER_FRAME = 0.6;
+        const AUTO_SCROLL_PX_PER_FRAME = 0.3;
         let paused = false;
+        // scrollLeft is rounded to an integer by the browser, so fractional speeds need
+        // their own accumulator or they get rounded away before the next frame reads them back.
+        let scrollPos = scroller.scrollLeft;
 
         function step() {
             const maxScroll = scroller.scrollWidth - scroller.clientWidth;
             if (!paused && maxScroll > 0) {
-                scroller.scrollLeft = scroller.scrollLeft >= maxScroll - 1 ? 0 : scroller.scrollLeft + AUTO_SCROLL_PX_PER_FRAME;
+                scrollPos = scrollPos >= maxScroll - 1 ? 0 : scrollPos + AUTO_SCROLL_PX_PER_FRAME;
+                scroller.scrollLeft = scrollPos;
             }
             requestAnimationFrame(step);
         }
 
         wrapper.addEventListener('mouseenter', () => { paused = true; });
-        wrapper.addEventListener('mouseleave', () => { paused = false; });
+        wrapper.addEventListener('mouseleave', () => {
+            // Resync in case the user scrolled/used the arrows while paused, avoiding a jump.
+            scrollPos = scroller.scrollLeft;
+            paused = false;
+        });
 
         requestAnimationFrame(step);
     }
