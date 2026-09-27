@@ -5,6 +5,16 @@
         "id": "3548274325",
         "title": "[A3UE] UnseenKill Mods Shared Code",
         "_comment": "Not an extender in the traditional sense, just a base for other mods."
+    },
+    {
+        "id": "3196795099",
+        "title": "A3UE - WH40K Extender",
+        "_comment": "Doesn't work properly."
+    },
+    {
+        "id": "3800012076",
+        "title": "A3UE Contraband",
+        "_comment": "Illicit content."
     }
   ]
 }
