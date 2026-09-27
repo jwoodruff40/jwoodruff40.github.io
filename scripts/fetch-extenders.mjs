@@ -8,9 +8,9 @@
 
 const ARMA3_APPID = 107410;
 const A3UE_TAG_REGEX = /a3ue/i;
-const NEWEST_COUNT = 12;
-const POPULAR_COUNT = 12;
-const MAX_FEATURED = 20;
+const NEWEST_COUNT = 18;
+const POPULAR_COUNT = 18;
+const MAX_FEATURED = 32;
 const DESCRIPTION_MAX_LEN = 200;
 
 const API_KEY = process.env.STEAM_API_KEY;
