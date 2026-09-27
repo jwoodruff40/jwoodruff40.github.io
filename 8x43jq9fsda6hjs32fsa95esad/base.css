@@ -28,7 +28,7 @@
 .ball {
   width: 15px;
   height: 15px;
-  background-image: url('https://i.imgur.com/38sjrM5.png');
+  background-image: url("images/Yellow.png");
   background-size: cover;
   position: absolute;
 }

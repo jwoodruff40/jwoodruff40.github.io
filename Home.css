@@ -25,7 +25,7 @@
   width: 100%;
   height: fit-content;
   padding: 1% 0 1% 0;
-  background-image: url("../images/rebellion.webp");
+  background-image: url("../images/features/sml/rebellion.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,6 +35,18 @@
   position: relative;
   text-align: center;
   font-family: 'Abel', Arial;
+}
+
+@media (min-width: 768px) {
+  .server-section {
+    background-image: url("../images/features/med/rebellion.webp");
+  }
+}
+
+@media (min-width: 1600px) {
+  .server-section {
+    background-image: url("../images/features/lrg/rebellion.webp");
+  }
 }
 
 .server-content {
@@ -195,12 +207,25 @@
   transition: opacity 0.3s ease;
   width: 100%;
   height: 100%;
+  background-image: var(--bg-sml);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .slide-inner {
+    background-image: var(--bg-med);
+  }
+}
+
+@media (min-width: 1600px) {
+  .slide-inner {
+    background-image: var(--bg-lrg);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1050,7 +1075,7 @@ ul.mods-2 {
 .donation-section {
   width: 100%;
   height: auto;
-  background-image: url(../images/MiddleEast.webp);
+  background-image: url(../images/features/sml/MiddleEast.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1065,10 +1090,22 @@ ul.mods-2 {
   margin: 10px 0 10px 0;
 }
 
+@media (min-width: 768px) {
+  .donation-section {
+    background-image: url(../images/features/med/MiddleEast.webp);
+  }
+}
+
+@media (min-width: 1600px) {
+  .donation-section {
+    background-image: url(../images/features/lrg/MiddleEast.webp);
+  }
+}
+
 .hatg-section {
   width: 100%;
   height: auto;
-  background-image: url(../images/wm.webp);
+  background-image: url(../images/features/sml/wm.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1081,6 +1118,18 @@ ul.mods-2 {
   /* border-bottom: 5px solid #555; */
   padding: 40px 8px 40px 8px;
   margin: 10px 0 10px 0;
+}
+
+@media (min-width: 768px) {
+  .hatg-section {
+    background-image: url(../images/features/med/wm.webp);
+  }
+}
+
+@media (min-width: 1600px) {
+  .hatg-section {
+    background-image: url(../images/features/lrg/wm.webp);
+  }
 }
 
 .donation-content {

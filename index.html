@@ -57,7 +57,7 @@
       "@context": "http://schema.org",
       "@type": "Organization",
       "name": "Antistasi Ultimate",
-      "logo": "images/UACLogoSmall.png",
+      "logo": "images/logos/lrg/UACLogoSmall.webp",
       "sameAs": [
         "https://github.com/Antistasi-Ultimate-Community/A3-Antistasi-Ultimate",
         "https://discord.antistasiultimate.com",
@@ -76,7 +76,9 @@
 	<!-- Header Start -->
 	<header class="sticky-header">
 		<a href="/" class="logo-link">
-			<img src="images/SiteLogo1.png" alt="Logo" class="header-logo" />
+			<img src="images/logos/med/SiteLogo1.webp"
+				srcset="images/logos/sml/SiteLogo1.webp 256w, images/logos/med/SiteLogo1.webp 512w, images/logos/lrg/SiteLogo1.webp 1920w"
+				sizes="250px" alt="Logo" class="header-logo" width="242" height="47" />
 		</a>
 
 		<div class="header-dropdowns">
@@ -118,7 +120,9 @@
 	<!-- Mobile Header -->
 	<nav class="mobile-navbar">
 		<a href="/" class="logo-link">
-			<img src="images/SiteLogo1.png" alt="Logo" class="header-logo" />
+			<img src="images/logos/med/SiteLogo1.webp"
+				srcset="images/logos/sml/SiteLogo1.webp 256w, images/logos/med/SiteLogo1.webp 512w, images/logos/lrg/SiteLogo1.webp 1920w"
+				sizes="250px" alt="Logo" class="header-logo" width="242" height="47" />
 		</a>
 		<button class="menu-toggle" onclick="toggleMobileMenu(this)">
 			<span class="bar"></span>
@@ -157,7 +161,9 @@
 				<div class="server-diamond"></div>
 				<div class="server-line"></div>
 				<a href="./About-Page/">
-					<img src="images/UACLogoSmall.png" alt="Server Logo" class="server-logo">
+					<img src="images/logos/med/UACLogoSmall.webp"
+						srcset="images/logos/sml/UACLogoSmall.webp 256w, images/logos/med/UACLogoSmall.webp 512w, images/logos/lrg/UACLogoSmall.webp 1920w"
+						sizes="300px" alt="Server Logo" class="server-logo" width="300" height="203">
 				</a>
 			</div>
 			<div class="server-buttons">
@@ -181,7 +187,7 @@
 		<div class="slider-container">
 			<div class="slider-track">
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/map_ui.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/map_ui.webp'); --bg-med: url('images/features/med/map_ui.webp'); --bg-lrg: url('images/features/lrg/map_ui.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Redesigned Map UI!</div>
 							<div class="slide-text-small">Context based map interaction is truly a beautiful thing.</div>
@@ -189,7 +195,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/skirmish.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/skirmish.webp'); --bg-med: url('images/features/med/skirmish.webp'); --bg-lrg: url('images/features/lrg/skirmish.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Town Skirmishes!</div>
 							<div class="slide-text-small">Grab your build boxes and defend the town. The police are coming!</div>
@@ -197,7 +203,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/interaction.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/interaction.webp'); --bg-med: url('images/features/med/interaction.webp'); --bg-lrg: url('images/features/lrg/interaction.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">HR Rework!</div>
 							<div class="slide-text-small">No longer is HR trivial. Set the gain parameter to 10%, and suffer.</div>
@@ -205,7 +211,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/maps.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/maps.webp'); --bg-med: url('images/features/med/maps.webp'); --bg-lrg: url('images/features/lrg/maps.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Optional 'Fog of War' parameter.</div>
 							<div class="slide-text-small">Recon is more important than ever before.</div>
@@ -213,7 +219,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/victory.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/victory.webp'); --bg-med: url('images/features/med/victory.webp'); --bg-lrg: url('images/features/lrg/victory.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">New and improved victory and loss conditions.</div>
 							<div class="slide-text-small">If you're a fan of total conquest, we're here for you.</div>
@@ -221,7 +227,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/ArmsDealer.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/ArmsDealer.webp'); --bg-med: url('images/features/med/ArmsDealer.webp'); --bg-lrg: url('images/features/lrg/ArmsDealer.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Reworked Trader.</div>
 							<div class="slide-text-small">Dynamically adjusts the traders inventory when loading supported mods.</div>
@@ -229,7 +235,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/roadblock.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/roadblock.webp'); --bg-med: url('images/features/med/roadblock.webp'); --bg-lrg: url('images/features/lrg/roadblock.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Roadblock tier system.</div>
 							<div class="slide-text-small">Making roadblocks a challenge at higher war levels.</div>
@@ -237,7 +243,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/garrison.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/garrison.webp'); --bg-med: url('images/features/med/garrison.webp'); --bg-lrg: url('images/features/lrg/garrison.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Improved garrisons.</div>
 							<div class="slide-text-small">No longer will you see militia in outposts at war level 9.</div>
@@ -245,21 +251,21 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/StealthNight.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/StealthNight.webp'); --bg-med: url('images/features/med/StealthNight.webp'); --bg-lrg: url('images/features/lrg/StealthNight.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Over 25 Supported Modsets.</div>
 						</div>
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/maps_2.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/maps_2.webp'); --bg-med: url('images/features/med/maps_2.webp'); --bg-lrg: url('images/features/lrg/maps_2.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Over 60 Supported Maps.</div>
 						</div>
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/rebels.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/rebels.webp'); --bg-med: url('images/features/med/rebels.webp'); --bg-lrg: url('images/features/lrg/rebels.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Countless feature and QOL updates.</div>
 							<div class="slide-text-small">since the original 10.0 release.</div>
@@ -384,7 +390,7 @@
 	<!-- Footer Start -->
 	<footer class="site-footer">
 		<div class="footer-logo-container">
-			<img src="images/Yellow.png" alt="Logo" class="footer-logo">
+			<img src="images/Yellow.png" alt="Logo" class="footer-logo" width="100" height="100">
 		</div>
 		<div class="footer-links">
 			<a href="/About-Page/">ABOUT US</a>

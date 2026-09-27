@@ -30,7 +30,9 @@
                         <h1 class="card-text">${esc(map.name)}</h1>
                     </div>
                     <div class="card-middle">
-                        <img class="card-image" src="images/satmaps/${escAttr(map.satmap)}" alt="SatMap">
+                        <img class="card-image" src="images/satmaps/med/${escAttr(map.satmap)}"
+                            srcset="images/satmaps/sml/${escAttr(map.satmap)} 256w, images/satmaps/med/${escAttr(map.satmap)} 500w"
+                            sizes="202px" alt="SatMap" width="202" height="202" loading="lazy" decoding="async">
                         <p class="card-middle-text" style="margin: -3px">Map Size: ${esc(map.size)} km</p>
                         <p class="card-middle-text">Zone Amount: ${map.zones}</p>
                     </div>
