@@ -32,7 +32,7 @@
                     <div class="card-middle">
                         <img class="card-image" src="images/satmaps/med/${escAttr(map.satmap)}"
                             srcset="images/satmaps/sml/${escAttr(map.satmap)} 256w, images/satmaps/med/${escAttr(map.satmap)} 500w"
-                            sizes="202px" alt="SatMap" width="202" height="202" loading="lazy" decoding="async">
+                            sizes="(max-width: 512px) 50vw, 256px" alt="SatMap" width="256" height="256" loading="lazy" decoding="async">
                         <p class="card-middle-text" style="margin: -3px">Map Size: ${esc(map.size)} km</p>
                         <p class="card-middle-text">Zone Amount: ${map.zones}</p>
                     </div>

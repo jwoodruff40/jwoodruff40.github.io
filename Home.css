@@ -624,8 +624,9 @@
 
 .card-container {
   background-color: transparent;
-  width: 210px;
-  height: 300px;
+  width: clamp(7.5vw, 256px, 50vw);
+  aspect-ratio: 7 / 10;
+  container-type: inline-size;
   perspective: 1000px;
 }
 
@@ -634,10 +635,6 @@
 }
 
 @media (max-width: 768px) {
-  .card-container {
-    width: 30vw;
-    height: calc(30vw * 1.43);
-  }
   .map-sort-controls {
     gap: 8px;
     padding: 10px;
@@ -756,7 +753,7 @@
 
 .card-middle-text {
   text-align: center;
-  font-size: clamp(0.5rem, 0.8vw, 2rem);
+  font-size: clamp(0.5rem, 7cqw, 2rem);
   color: white;
   padding: 0 5px;
   font-family: "Abel", Arial;
@@ -777,7 +774,7 @@
   color: white;
   margin: 0;
   width: 100%;
-  font-size: clamp(0.5rem, 1vw, 2rem);
+  font-size: clamp(0.5rem, 9cqw, 2rem);
   flex-shrink: 0;
   box-sizing: border-box;
   text-overflow: clip;
@@ -803,7 +800,7 @@
 
 .card-tooltip,
 .card-middle-text-back {
-  font-size: clamp(0.43rem, 0.8vw, 2rem);
+  font-size: clamp(0.43rem, 7cqw, 2rem);
   color: white;
   padding: 0 5px;
   font-family: "Abel", Arial;
@@ -826,7 +823,7 @@
   border-width: 2px;
   padding: 6px 10px;
   border-radius: 10px;
-  font-size: clamp(0.5rem, 1.5vw, 2rem);
+  font-size: clamp(0.5rem, 14cqw, 2rem);
   font-family: "Abel", Arial;
   position: absolute;
   bottom: 69%;
@@ -859,7 +856,7 @@
   display: inline-block;
   text-align: center;
   align-content: center;
-  font-size: clamp(0.5rem, 0.8vw, 2rem);
+  font-size: clamp(0.5rem, 7cqw, 2rem);
   margin: 0;
   cursor: pointer;
   background-color: #ffd90000;
