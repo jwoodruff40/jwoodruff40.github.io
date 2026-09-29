@@ -431,7 +431,9 @@
 
 .extender-card {
   flex: 0 0 auto;
-  width: 260px;
+  width: 12.5vw;
+  max-width: 33vw;
+  aspect-ratio: 3 / 4;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
@@ -527,7 +529,8 @@
 
 @media (max-width: 768px) {
   .extender-card {
-    width: 70vw;
+    width: 50vw;
+    max-width: 50vw;
   }
   .extenders-scroller {
     padding: 10px 40px;
