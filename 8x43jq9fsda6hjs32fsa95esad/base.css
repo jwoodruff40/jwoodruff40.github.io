@@ -28,7 +28,7 @@
 .ball {
   width: 15px;
   height: 15px;
-  background-image: url("images/Yellow.png");
+  background-image: url("images/logos/sml/Yellow.webp");
   background-size: cover;
   position: absolute;
 }

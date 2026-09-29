@@ -551,7 +551,7 @@
 .card-section {
   width: 100%;
   background-size: 100% auto; 
-  background-image: url('../images/mapcard-page-bg.webp');
+  background-image: url('../images/backgrounds/sml/mapcard-page-bg.webp');
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -566,7 +566,7 @@
 .mod-list-section {
   width: 100%;
   background-size: 100% auto; 
-  background-image: url('../images/mapcard-page-bg.webp');
+  background-image: url('../images/backgrounds/sml/mapcard-page-bg.webp');
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -574,6 +574,27 @@
   box-sizing: border-box;
   background-color: #0d111700;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/med/mapcard-page-bg.webp');
+  }
+}
+
+@media (min-width: 1600px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/lrg/mapcard-page-bg.webp');
+  }
+}
+
+@media (min-width: 2560px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/xlg/mapcard-page-bg.webp');
+  }
 }
 
 .card-grid {
