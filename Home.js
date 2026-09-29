@@ -76,10 +76,24 @@
     // Featured Extenders
     // -------------------------------------------------------------------------
 
+    /**
+     * Steam workshop preview images are served through Akamai Image Manager, which
+     * supports resizing on the fly via query params — so we can request an
+     * appropriately small image straight from Steam's CDN instead of storing our
+     * own resized copies. Requesting larger than the source just returns the original
+     * (no upscaling), so it's safe to always ask for these fixed tiers.
+     */
+    function steamThumbUrl(baseUrl, size) {
+        return `${baseUrl}?imw=${size}&imh=${size}&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false`;
+    }
+
     function createExtenderCard(item) {
         const badge = item.category === 'popular' ? 'Popular' : 'New';
         const image = item.image
-            ? `<img src="${escAttr(item.image)}" alt="${escAttr(item.title)}" loading="lazy">`
+            ? `<img src="${escAttr(steamThumbUrl(item.image, 600))}"
+                srcset="${escAttr(steamThumbUrl(item.image, 260))} 260w, ${escAttr(steamThumbUrl(item.image, 400))} 400w, ${escAttr(steamThumbUrl(item.image, 600))} 600w, ${escAttr(steamThumbUrl(item.image, 900))} 900w"
+                sizes="(max-width: 768px) 70vw, 260px"
+                alt="${escAttr(item.title)}" loading="lazy" decoding="async">`
             : '';
         return `<a class="extender-card" href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer">
             <div class="extender-card-image-wrap">
