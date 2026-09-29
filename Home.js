@@ -118,7 +118,7 @@
         right.addEventListener('click', () => scroller.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
 
         // Autoplay: continuously scroll right, looping back to the start. Paused on hover.
-        const AUTO_SCROLL_PX_PER_FRAME = 0.3;
+        const AUTO_SCROLL_VW_PER_FRAME = 0.015;
         let paused = false;
         // scrollLeft is rounded to an integer by the browser, so fractional speeds need
         // their own accumulator or they get rounded away before the next frame reads them back.
@@ -127,7 +127,8 @@
         function step() {
             const maxScroll = scroller.scrollWidth - scroller.clientWidth;
             if (!paused && maxScroll > 0) {
-                scrollPos = scrollPos >= maxScroll - 1 ? 0 : scrollPos + AUTO_SCROLL_PX_PER_FRAME;
+                const pxPerFrame = (AUTO_SCROLL_VW_PER_FRAME / 100) * window.innerWidth;
+                scrollPos = scrollPos >= maxScroll - 1 ? 0 : scrollPos + pxPerFrame;
                 scroller.scrollLeft = scrollPos;
             }
             requestAnimationFrame(step);
