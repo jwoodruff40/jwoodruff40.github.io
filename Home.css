@@ -252,7 +252,7 @@
 
 .slider-dots {
   position: absolute;
-  bottom: 13%;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -672,9 +672,6 @@
 
   .map-sort-select {
     min-width: 120px;
-  }
-  .slider-dots{
-    bottom: 2%;
   }
 }
 
