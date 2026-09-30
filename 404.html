@@ -17,9 +17,21 @@
             background-color: #1b1b1b;
             color: #fff;
             height: 100vh;
-            background-image: url("../images/rebellion.webp");
+            background-image: url("images/features/sml/rebellion.webp");
             background-size: cover;
             background-position: center;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                background-image: url("images/features/med/rebellion.webp");
+            }
+        }
+
+        @media (min-width: 1600px) {
+            body {
+                background-image: url("images/features/lrg/rebellion.webp");
+            }
         }
 
         .body-overlay {

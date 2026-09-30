@@ -30,7 +30,9 @@
                         <h1 class="card-text">${esc(map.name)}</h1>
                     </div>
                     <div class="card-middle">
-                        <img class="card-image" src="images/satmaps/${escAttr(map.satmap)}" alt="SatMap">
+                        <img class="card-image" src="images/satmaps/med/${escAttr(map.satmap)}"
+                            srcset="images/satmaps/sml/${escAttr(map.satmap)} 256w, images/satmaps/med/${escAttr(map.satmap)} 500w"
+                            sizes="(max-width: 512px) 50vw, 256px" alt="SatMap" width="256" height="256" loading="lazy" decoding="async">
                         <p class="card-middle-text" style="margin: -3px">Map Size: ${esc(map.size)} km</p>
                         <p class="card-middle-text">Zone Amount: ${map.zones}</p>
                     </div>
@@ -68,6 +70,92 @@
         grid.innerHTML = maps.map(createMapCard).join('');
         // Re-run text resizing now that cards are in the DOM
         if (typeof resizeUITexts === 'function') resizeUITexts();
+    }
+
+    // -------------------------------------------------------------------------
+    // Featured Extenders
+    // -------------------------------------------------------------------------
+
+    /**
+     * Steam workshop preview images are served through Akamai Image Manager, which
+     * supports resizing on the fly via query params — so we can request an
+     * appropriately small image straight from Steam's CDN instead of storing our
+     * own resized copies. Requesting larger than the source just returns the original
+     * (no upscaling), so it's safe to always ask for these fixed tiers.
+     */
+    function steamThumbUrl(baseUrl, size) {
+        return `${baseUrl}?imw=${size}&imh=${size}&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false`;
+    }
+
+    function createExtenderCard(item) {
+        const badge = item.category === 'popular' ? 'Popular' : 'New';
+        const image = item.image
+            ? `<img src="${escAttr(steamThumbUrl(item.image, 600))}"
+                srcset="${escAttr(steamThumbUrl(item.image, 260))} 260w, ${escAttr(steamThumbUrl(item.image, 400))} 400w, ${escAttr(steamThumbUrl(item.image, 600))} 600w, ${escAttr(steamThumbUrl(item.image, 900))} 900w"
+                sizes="(max-width: 768px) 70vw, 260px"
+                alt="${escAttr(item.title)}" loading="lazy" decoding="async">`
+            : '';
+        return `<a class="extender-card" href="${escAttr(item.url)}" target="_blank" rel="noopener noreferrer">
+            <div class="extender-card-image-wrap">
+                <span class="extender-card-badge">${esc(badge)}</span>
+                ${image}
+            </div>
+            <div class="extender-card-body">
+                <h3 class="extender-card-title">${esc(item.title)}</h3>
+                <p class="extender-card-description">${esc(item.description || '')}</p>
+            </div>
+        </a>`;
+    }
+
+    function renderExtenders(data) {
+        const scroller = document.getElementById('extenders-scroller');
+        const emptyMsg = document.getElementById('extenders-empty');
+        const items = (data && data.extenders) || [];
+        if (!scroller) return;
+        if (items.length === 0) {
+            scroller.hidden = true;
+            if (emptyMsg) emptyMsg.hidden = false;
+            return;
+        }
+        scroller.innerHTML = items.map(createExtenderCard).join('');
+    }
+
+    function initExtendersScroller() {
+        const wrapper = document.querySelector('.extenders-scroller-wrapper');
+        const scroller = document.getElementById('extenders-scroller');
+        const left = document.querySelector('.extenders-arrow.left');
+        const right = document.querySelector('.extenders-arrow.right');
+        if (!scroller || !left || !right || !wrapper) return;
+
+        const scrollAmount = () => Math.max(scroller.clientWidth * 0.8, 260);
+        left.addEventListener('click', () => scroller.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+        right.addEventListener('click', () => scroller.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+
+        // Autoplay: continuously scroll right, looping back to the start. Paused on hover.
+        const AUTO_SCROLL_VW_PER_FRAME = 0.015;
+        let paused = false;
+        // scrollLeft is rounded to an integer by the browser, so fractional speeds need
+        // their own accumulator or they get rounded away before the next frame reads them back.
+        let scrollPos = scroller.scrollLeft;
+
+        function step() {
+            const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+            if (!paused && maxScroll > 0) {
+                const pxPerFrame = (AUTO_SCROLL_VW_PER_FRAME / 100) * window.innerWidth;
+                scrollPos = scrollPos >= maxScroll - 1 ? 0 : scrollPos + pxPerFrame;
+                scroller.scrollLeft = scrollPos;
+            }
+            requestAnimationFrame(step);
+        }
+
+        wrapper.addEventListener('mouseenter', () => { paused = true; });
+        wrapper.addEventListener('mouseleave', () => {
+            // Resync in case the user scrolled/used the arrows while paused, avoiding a jump.
+            scrollPos = scroller.scrollLeft;
+            paused = false;
+        });
+
+        requestAnimationFrame(step);
     }
 
     // -------------------------------------------------------------------------
@@ -227,6 +315,7 @@
     // -------------------------------------------------------------------------
 
     async function init() {
+        initExtendersScroller();
         try {
             const [maps, mods] = await Promise.all([
                 fetch('/data/maps.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
@@ -236,6 +325,13 @@
             renderMods(mods);
         } catch (err) {
             console.error('Failed to load page data:', err);
+        }
+
+        try {
+            const extenders = await fetch('/data/extenders.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); });
+            renderExtenders(extenders);
+        } catch (err) {
+            console.error('Failed to load featured extenders:', err);
         }
     }
 

@@ -32,17 +32,18 @@
 	<title>Home Page - Antistasi Ultimate</title>
 	<link href="Home.css" rel="stylesheet" />
 	<link href="Site.css" rel="stylesheet" />
-	<link href="images/Yellow.png" rel="icon" />
-	<meta property="og:image" content="images/Yellow.png">
+	<link href="images/logos/med/Yellow.webp" rel="icon" />
+	<meta property="og:image" content="images/logos/lrg/Yellow.webp">
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="300">
 	<meta property="og:image:height" content="300">
-	<link
-		href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
-		id="u-theme-google-font" rel="stylesheet" />
-	<link
-		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Black+Ops+One:400"
-		id="u-page-google-font" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Abel&family=Oswald&display=swap" rel="stylesheet">
+	<!-- LCP element: hint the browser to fetch the server-section's background image immediately -->
+	<link rel="preload" as="image" href="images/features/lrg/rebellion.webp"
+		imagesrcset="images/features/sml/rebellion.webp 480w, images/features/med/rebellion.webp 960w, images/features/lrg/rebellion.webp 1920w"
+		imagesizes="100vw" fetchpriority="high">
 </head>
 <meta name="keywords"
 	content="AntistasiUltimate, Antistasi, Arma3, Mod, Steam, arma 3 antistasi ultimate, antistasi ultimate, Ultimate, Arma 3">
@@ -57,7 +58,7 @@
       "@context": "http://schema.org",
       "@type": "Organization",
       "name": "Antistasi Ultimate",
-      "logo": "images/UACLogoSmall.png",
+      "logo": "images/logos/lrg/UACLogoSmall.webp",
       "sameAs": [
         "https://github.com/Antistasi-Ultimate-Community/A3-Antistasi-Ultimate",
         "https://discord.antistasiultimate.com",
@@ -76,7 +77,9 @@
 	<!-- Header Start -->
 	<header class="sticky-header">
 		<a href="/" class="logo-link">
-			<img src="images/SiteLogo1.png" alt="Logo" class="header-logo" />
+			<img src="images/logos/med/SiteLogo1.webp"
+				srcset="images/logos/sml/SiteLogo1.webp 256w, images/logos/med/SiteLogo1.webp 512w, images/logos/lrg/SiteLogo1.webp 1920w"
+				sizes="250px" alt="Logo" class="header-logo" width="242" height="47" />
 		</a>
 
 		<div class="header-dropdowns">
@@ -118,7 +121,9 @@
 	<!-- Mobile Header -->
 	<nav class="mobile-navbar">
 		<a href="/" class="logo-link">
-			<img src="images/SiteLogo1.png" alt="Logo" class="header-logo" />
+			<img src="images/logos/med/SiteLogo1.webp"
+				srcset="images/logos/sml/SiteLogo1.webp 256w, images/logos/med/SiteLogo1.webp 512w, images/logos/lrg/SiteLogo1.webp 1920w"
+				sizes="250px" alt="Logo" class="header-logo" width="242" height="47" />
 		</a>
 		<button class="menu-toggle" onclick="toggleMobileMenu(this)">
 			<span class="bar"></span>
@@ -157,9 +162,12 @@
 				<div class="server-diamond"></div>
 				<div class="server-line"></div>
 				<a href="./About-Page/">
-					<img src="images/UACLogoSmall.png" alt="Server Logo" class="server-logo">
+					<img src="images/logos/med/UACLogoSmall.webp"
+						srcset="images/logos/sml/UACLogoSmall.webp 256w, images/logos/med/UACLogoSmall.webp 512w, images/logos/lrg/UACLogoSmall.webp 1920w"
+						sizes="(min-width: 768px) 300px, 150px" alt="Server Logo" class="server-logo" width="300" height="203">
 				</a>
 			</div>
+			<div style="padding:15px"></div>
 			<div class="server-buttons">
 				<p class="server-text">Enlist in the rebellion.</p>
 				<a href="https://play.antistasiultimate.com" class="server-btn">Join The War</a>
@@ -181,7 +189,7 @@
 		<div class="slider-container">
 			<div class="slider-track">
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/map_ui.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/map_ui.webp'); --bg-med: url('images/features/med/map_ui.webp'); --bg-lrg: url('images/features/lrg/map_ui.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Redesigned Map UI!</div>
 							<div class="slide-text-small">Context based map interaction is truly a beautiful thing.</div>
@@ -189,7 +197,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/skirmish.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/skirmish.webp'); --bg-med: url('images/features/med/skirmish.webp'); --bg-lrg: url('images/features/lrg/skirmish.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Town Skirmishes!</div>
 							<div class="slide-text-small">Grab your build boxes and defend the town. The police are coming!</div>
@@ -197,7 +205,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/interaction.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/interaction.webp'); --bg-med: url('images/features/med/interaction.webp'); --bg-lrg: url('images/features/lrg/interaction.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">HR Rework!</div>
 							<div class="slide-text-small">No longer is HR trivial. Set the gain parameter to 10%, and suffer.</div>
@@ -205,7 +213,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/maps.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/maps.webp'); --bg-med: url('images/features/med/maps.webp'); --bg-lrg: url('images/features/lrg/maps.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Optional 'Fog of War' parameter.</div>
 							<div class="slide-text-small">Recon is more important than ever before.</div>
@@ -213,7 +221,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/victory.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/victory.webp'); --bg-med: url('images/features/med/victory.webp'); --bg-lrg: url('images/features/lrg/victory.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">New and improved victory and loss conditions.</div>
 							<div class="slide-text-small">If you're a fan of total conquest, we're here for you.</div>
@@ -221,7 +229,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/ArmsDealer.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/ArmsDealer.webp'); --bg-med: url('images/features/med/ArmsDealer.webp'); --bg-lrg: url('images/features/lrg/ArmsDealer.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Reworked Trader.</div>
 							<div class="slide-text-small">Dynamically adjusts the traders inventory when loading supported mods.</div>
@@ -229,7 +237,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/roadblock.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/roadblock.webp'); --bg-med: url('images/features/med/roadblock.webp'); --bg-lrg: url('images/features/lrg/roadblock.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Roadblock tier system.</div>
 							<div class="slide-text-small">Making roadblocks a challenge at higher war levels.</div>
@@ -237,7 +245,7 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/garrison.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/garrison.webp'); --bg-med: url('images/features/med/garrison.webp'); --bg-lrg: url('images/features/lrg/garrison.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Improved garrisons.</div>
 							<div class="slide-text-small">No longer will you see militia in outposts at war level 9.</div>
@@ -245,21 +253,21 @@
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/StealthNight.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/StealthNight.webp'); --bg-med: url('images/features/med/StealthNight.webp'); --bg-lrg: url('images/features/lrg/StealthNight.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Over 25 Supported Modsets.</div>
 						</div>
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/maps_2.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/maps_2.webp'); --bg-med: url('images/features/med/maps_2.webp'); --bg-lrg: url('images/features/lrg/maps_2.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Over 60 Supported Maps.</div>
 						</div>
 					</div>
 				</div>
 				<div class="slide">
-					<div class="slide-inner" style="background-image: url('images/rebels.webp');">
+					<div class="slide-inner" style="--bg-sml: url('images/features/sml/rebels.webp'); --bg-med: url('images/features/med/rebels.webp'); --bg-lrg: url('images/features/lrg/rebels.webp');">
 						<div class="slide-text-background">
 							<div class="slide-text">Countless feature and QOL updates.</div>
 							<div class="slide-text-small">since the original 10.0 release.</div>
@@ -273,6 +281,28 @@
 		</div>
 	</section>
 	<!-- Features Showcase End -->
+	<!-- Featured Extenders Start -->
+	<section class="section-divider" id="extenders-section">
+		<h2 class="divider-text">Featured Extenders</h2>
+	</section>
+	<section class="extenders-section">
+		<p class="extenders-intro">
+			"Extenders" are community-built mods that add new factions, mechanics and more on top of Antistasi Ultimate.
+			Extenders use the <strong>A3UE</strong> prefix on the Steam Workshop.
+			</br></br><strong>Extenders are not created, endorsed, or supported by the authors of Antistasi Ultimate.</strong>
+			When created by a member of the Antistasi Ultimate Community development team, they are still considered community content and not endorsed by the project.
+			</br></br>Here's a mix of newly published and all-time popular extenders.
+		</p>
+		<div id="extenders-empty" class="extenders-empty" hidden>No featured extenders available right now — check back soon!</div>
+		<div class="extenders-scroller-wrapper">
+			<button class="extenders-arrow left" aria-label="Scroll left">&#10094;</button>
+			<div id="extenders-scroller" class="extenders-scroller"></div>
+			<button class="extenders-arrow right" aria-label="Scroll right">&#10095;</button>
+		</div>
+		<a href="https://steamcommunity.com/workshop/browse/?appid=107410&searchtext=A3UE" target="_blank" rel="noopener"
+			class="card-button no-flip">Browse All Extenders</a>
+	</section>
+	<!-- Featured Extenders End -->
 	<!-- Map Showcase Start -->
 	<section class="section-divider" id="maps-section">
 		<h2 class="divider-text">Supported Maps</h2>
@@ -362,7 +392,9 @@
 	<!-- Footer Start -->
 	<footer class="site-footer">
 		<div class="footer-logo-container">
-			<img src="images/Yellow.png" alt="Logo" class="footer-logo">
+			<img src="images/logos/med/Yellow.webp"
+				srcset="images/logos/sml/Yellow.webp 128w, images/logos/med/Yellow.webp 256w, images/logos/lrg/Yellow.webp 512w"
+				sizes="100px" alt="Logo" class="footer-logo" width="100" height="100">
 		</div>
 		<div class="footer-links">
 			<a href="/About-Page/">ABOUT US</a>

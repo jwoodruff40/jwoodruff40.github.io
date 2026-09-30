@@ -1,0 +1,47 @@
+name: Update Featured Extenders
+
+on:
+  schedule:
+    - cron: '0 6 * * 0' # weekly at 06:00 UTC on Sundays
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  UPDATE_BRANCH: automated/update-featured-extenders
+
+jobs:
+  update-extenders:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Fetch featured extenders from Steam
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: node scripts/fetch-extenders.mjs
+
+      - name: Open pull request with changes
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: refresh featured extenders"
+          branch: ${{ env.UPDATE_BRANCH }}
+          delete-branch: true
+          add-paths: data/extenders.json
+          title: "Update featured extenders"
+          labels: |
+            automated
+            extenders
+          body: |
+            Automated refresh of `data/extenders.json` from the Steam Workshop (via `scripts/fetch-extenders.mjs`).
+
+            Review the diff below:
+            - To publish as-is, approve and merge this PR.
+            - To drop an entry, either push a commit to this PR's branch removing it from `data/extenders.json`, or add it to `data/extenders-ignore.json` in a follow-up PR so future runs exclude it automatically.

@@ -23,9 +23,9 @@
 /* Connect Page Start */
 .server-section {
   width: 100%;
-  height: fit-content;
+  aspect-ratio: 16 / 9;
   padding: 1% 0 1% 0;
-  background-image: url("../images/rebellion.webp");
+  background-image: url("../images/features/sml/rebellion.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,6 +35,18 @@
   position: relative;
   text-align: center;
   font-family: 'Abel', Arial;
+}
+
+@media (min-width: 768px) {
+  .server-section {
+    background-image: url("../images/features/med/rebellion.webp");
+  }
+}
+
+@media (min-width: 1600px) {
+  .server-section {
+    background-image: url("../images/features/lrg/rebellion.webp");
+  }
 }
 
 .server-content {
@@ -57,10 +69,16 @@
   margin-top: 50px;
 }
 
+@media (max-height: 960px) {
+  .server-shape-container {
+    height: 140px;
+  }
+}
+
 .server-diamond {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 75px;
+  aspect-ratio: 1 / 1;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: -1;
   top: 50%;
@@ -68,10 +86,16 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
+@media (min-width: 768px) {
+  .server-diamond {
+    width: 150px;
+  }
+}
+
 .server-line {
   position: absolute;
   width: 100%;
-  height: 100px;
+  height: 50px;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 0;
   top: 50%;
@@ -79,14 +103,27 @@
   transform: translate(-50%, -50%);
 }
 
+@media (min-width: 768px) {
+  .server-line {
+    height: 100px;
+  }
+}
+
 .server-logo {
   position: absolute;
-  width: 300px;
+  height: auto;
+  width: 150px;
   z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: opacity 0.5s ease-in-out, filter 0.5s ease-out; 
+}
+
+@media (min-width: 768px) {
+  .server-logo {
+    width: 300px;
+  }
 }
 
 .server-logo:hover {
@@ -156,7 +193,6 @@
 /* Slider Section Start */
 .image-slider-section {
   width: 100%;
-  max-height: 90vh;
   height: fit-content;
   overflow: hidden;
   position: relative;
@@ -179,15 +215,9 @@
 
 .slide {
   min-width: 100vw;
-  height: 100vh;
+  aspect-ratio: 16 / 9;
   flex-shrink: 0;
   position: relative;
-}
-
-@media (max-width: 480px) {
-  .slide {
-    max-height: 500px;
-  }
 }
 
 .slide-inner {
@@ -195,6 +225,7 @@
   transition: opacity 0.3s ease;
   width: 100%;
   height: 100%;
+  background-image: var(--bg-sml);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -203,9 +234,15 @@
   align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .slide-inner {
-    background-position: left; /* Moves the image to the left on mobile */
+    background-image: var(--bg-med);
+  }
+}
+
+@media (min-width: 1600px) {
+  .slide-inner {
+    background-image: var(--bg-lrg);
   }
 }
 
@@ -215,7 +252,7 @@
 
 .slider-dots {
   position: absolute;
-  bottom: 13%;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -343,6 +380,164 @@
 
 /* Slider Section End */
 
+/* Featured Extenders Start */
+.extenders-section {
+  width: 100vw;
+  background-color: #0d1117;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 0 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.extenders-intro {
+  max-width: 800px;
+  text-align: center;
+  color: #e5e5e5;
+  font-family: "Abel", Arial;
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  margin: 0;
+}
+
+.extenders-empty {
+  color: #aaaaaa;
+  font-family: "Abel", Arial;
+  font-size: 1rem;
+}
+
+.extenders-scroller-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.extenders-scroller {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: auto;
+  padding: 10px 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.extenders-scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.extender-card {
+  flex: 0 0 auto;
+  width: 12.5vw;
+  max-width: 33vw;
+  aspect-ratio: 3 / 4;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.extender-card:hover {
+  transform: translateY(-6px);
+  border-color: #ffd200;
+}
+
+.extender-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffd200;
+  font-family: "Abel", Arial;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.extender-card-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+}
+
+.extender-card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.extender-card-body {
+  padding: 12px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.extender-card-title {
+  color: #ffffff;
+  font-family: "Oswald", Arial;
+  font-size: 1.05rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.extender-card-description {
+  color: #cccccc;
+  font-family: "Abel", Arial;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.extenders-arrow {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 10px 6px;
+  z-index: 5;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.extenders-arrow:hover {
+  color: #ffd700;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.extenders-arrow.left {
+  position: absolute;
+  left: 0;
+}
+
+.extenders-arrow.right {
+  position: absolute;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .extender-card {
+    width: 50vw;
+    max-width: 50vw;
+  }
+  .extenders-scroller {
+    padding: 10px 40px;
+  }
+}
+/* Featured Extenders End */
+
 /* Map Showcase Start*/
 @keyframes slideIn {
   from {
@@ -359,7 +554,7 @@
 .card-section {
   width: 100%;
   background-size: 100% auto; 
-  background-image: url('../images/mapcard-page-bg.webp');
+  background-image: url('../images/backgrounds/sml/mapcard-page-bg.webp');
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -374,7 +569,7 @@
 .mod-list-section {
   width: 100%;
   background-size: 100% auto; 
-  background-image: url('../images/mapcard-page-bg.webp');
+  background-image: url('../images/backgrounds/sml/mapcard-page-bg.webp');
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -382,6 +577,27 @@
   box-sizing: border-box;
   background-color: #0d111700;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/med/mapcard-page-bg.webp');
+  }
+}
+
+@media (min-width: 1600px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/lrg/mapcard-page-bg.webp');
+  }
+}
+
+@media (min-width: 2560px) {
+  .card-section,
+  .mod-list-section {
+    background-image: url('../images/backgrounds/xlg/mapcard-page-bg.webp');
+  }
 }
 
 .card-grid {
@@ -432,8 +648,9 @@
 
 .card-container {
   background-color: transparent;
-  width: 210px;
-  height: 300px;
+  width: clamp(7.5vw, 256px, 50vw);
+  aspect-ratio: 7 / 10;
+  container-type: inline-size;
   perspective: 1000px;
 }
 
@@ -442,10 +659,6 @@
 }
 
 @media (max-width: 768px) {
-  .card-container {
-    width: 30vw;
-    height: calc(30vw * 1.43);
-  }
   .map-sort-controls {
     gap: 8px;
     padding: 10px;
@@ -459,9 +672,6 @@
 
   .map-sort-select {
     min-width: 120px;
-  }
-  .slider-dots{
-    bottom: 2%;
   }
 }
 
@@ -564,7 +774,7 @@
 
 .card-middle-text {
   text-align: center;
-  font-size: clamp(0.5rem, 0.8vw, 2rem);
+  font-size: clamp(0.5rem, 7cqw, 2rem);
   color: white;
   padding: 0 5px;
   font-family: "Abel", Arial;
@@ -585,7 +795,7 @@
   color: white;
   margin: 0;
   width: 100%;
-  font-size: clamp(0.5rem, 1vw, 2rem);
+  font-size: clamp(0.5rem, 9cqw, 2rem);
   flex-shrink: 0;
   box-sizing: border-box;
   text-overflow: clip;
@@ -611,7 +821,7 @@
 
 .card-tooltip,
 .card-middle-text-back {
-  font-size: clamp(0.43rem, 0.8vw, 2rem);
+  font-size: clamp(0.43rem, 7cqw, 2rem);
   color: white;
   padding: 0 5px;
   font-family: "Abel", Arial;
@@ -634,7 +844,7 @@
   border-width: 2px;
   padding: 6px 10px;
   border-radius: 10px;
-  font-size: clamp(0.5rem, 1.5vw, 2rem);
+  font-size: clamp(0.5rem, 14cqw, 2rem);
   font-family: "Abel", Arial;
   position: absolute;
   bottom: 69%;
@@ -667,7 +877,7 @@
   display: inline-block;
   text-align: center;
   align-content: center;
-  font-size: clamp(0.5rem, 0.8vw, 2rem);
+  font-size: clamp(0.5rem, 7cqw, 2rem);
   margin: 0;
   cursor: pointer;
   background-color: #ffd90000;
@@ -895,7 +1105,7 @@ ul.mods-2 {
 .donation-section {
   width: 100%;
   height: auto;
-  background-image: url(../images/MiddleEast.webp);
+  background-image: url(../images/features/sml/MiddleEast.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -910,10 +1120,22 @@ ul.mods-2 {
   margin: 10px 0 10px 0;
 }
 
+@media (min-width: 768px) {
+  .donation-section {
+    background-image: url(../images/features/med/MiddleEast.webp);
+  }
+}
+
+@media (min-width: 1600px) {
+  .donation-section {
+    background-image: url(../images/features/lrg/MiddleEast.webp);
+  }
+}
+
 .hatg-section {
   width: 100%;
   height: auto;
-  background-image: url(../images/wm.webp);
+  background-image: url(../images/features/sml/wm.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -926,6 +1148,18 @@ ul.mods-2 {
   /* border-bottom: 5px solid #555; */
   padding: 40px 8px 40px 8px;
   margin: 10px 0 10px 0;
+}
+
+@media (min-width: 768px) {
+  .hatg-section {
+    background-image: url(../images/features/med/wm.webp);
+  }
+}
+
+@media (min-width: 1600px) {
+  .hatg-section {
+    background-image: url(../images/features/lrg/wm.webp);
+  }
 }
 
 .donation-content {

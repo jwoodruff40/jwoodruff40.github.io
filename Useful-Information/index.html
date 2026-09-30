@@ -41,23 +41,23 @@
     <meta property="og:description"
         content="Access helpful information and technical details about Antistasi Ultimate.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="../images/Yellow.png">
+    <meta property="og:image" content="../images/logos/lrg/Yellow.webp">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="300">
     <meta property="og:image:height" content="300">
 
     <link href="Info.css" rel="stylesheet" />
     <link href="../Site.css" rel="stylesheet" />
-    <link href="../images/Yellow.png" rel="icon" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Open+Sans:300,400,600,700,800|Black+Ops+One:400"
-        rel="stylesheet" />
+    <link href="../images/logos/med/Yellow.webp" rel="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Oswald&family=Open+Sans&display=swap" rel="stylesheet">
     <script type="application/ld+json">
 		{
 			"@context": "http://schema.org",
 			"@type": "Organization",
 			"name": "Antistasi Ultimate",
-			"logo": "../images/UACLogoSmall.png",
+			"logo": "../images/logos/lrg/UACLogoSmall.webp",
 			"sameAs": [
 				"https://github.com/Antistasi-Ultimate-Community/A3-Antistasi-Ultimate",
 				"https://discord.antistasiultimate.com",
@@ -74,7 +74,9 @@
     <!-- Header Start -->
     <header class="sticky-header">
         <a href="/" class="logo-link">
-            <img src="../images/SiteLogo1.png" alt="Logo" class="header-logo" />
+            <img src="../images/logos/med/SiteLogo1.webp"
+                srcset="../images/logos/sml/SiteLogo1.webp 256w, ../images/logos/med/SiteLogo1.webp 512w, ../images/logos/lrg/SiteLogo1.webp 1920w"
+                sizes="250px" alt="Logo" class="header-logo" />
         </a>
 
         <div class="header-dropdowns">
@@ -117,7 +119,9 @@
     <!-- Mobile Header -->
     <nav class="mobile-navbar">
         <a href="/" class="logo-link">
-            <img src="../images/SiteLogo1.png" alt="Logo" class="header-logo" />
+            <img src="../images/logos/med/SiteLogo1.webp"
+                srcset="../images/logos/sml/SiteLogo1.webp 256w, ../images/logos/med/SiteLogo1.webp 512w, ../images/logos/lrg/SiteLogo1.webp 1920w"
+                sizes="250px" alt="Logo" class="header-logo" />
         </a>
         <button class="menu-toggle" onclick="toggleMobileMenu(this)">
             <span class="bar"></span>
@@ -291,7 +295,8 @@ this addAction ["copy", {[(_this select 0), "RHS", "Sniper Rifles"] call A3U_fnc
         "A3A/addons/maps",
         "A3A/addons/patcom",
         "A3A/addons/scrt",
-        "A3A/addons/ultimate"
+        "A3A/addons/ultimate",
+        "A3A/addons/zeus"
     ],
     "clientMods": [],
     "ftpConnection": {},
@@ -302,7 +307,11 @@ this addAction ["copy", {[(_this select 0), "RHS", "Sniper Rifles"] call A3U_fnc
         <div class="info-code-section">
             <h3 class="useful-info-header">Antistasi Ultimate Extender Documentation</h3>
             <div class="info-block">
-                <h4 class="info-block-title">Antistasi Ultimate Extender Example</h4>
+                <h4 class="info-block-title">(WIP) Antistasi Ultimate Blank Extender Template</h4>
+                <p class="info-block-description">This is a revised example of how you build your own extender fast. It is a working demonstration of how extenders to Antistasi Ultimate can be built but we consider it a work-in-progress nonetheless. If you need help or are missing an example case we haven't considered, yet, use our <a class="info-link"
+                        href="https://discord.antistasiultimate.com">Discord</a>.
+                <div class="info-divider-full"></div>
+                <h4 class="info-block-title">(Deprecation Pending) Antistasi Ultimate Extender Example</h4>
                 <p class="info-block-description">This is an example of how you could extend Antistasi Ultimate with new
                     maps and templates or overwrite existing ones. This is a fork of <a class="info-link"
                         href="https://github.com/official-antistasi-community/A3AExtender">A3AExtender</a> made by <a
@@ -314,18 +323,20 @@ this addAction ["copy", {[(_this select 0), "RHS", "Sniper Rifles"] call A3U_fnc
                 <ul class="info-block-description">
                     <li>Arma 3</li>
                     <li>Arma 3 Tools</li>
+                    <li>HEMTT (if using new Extender template)</li>
                 </ul>
                 Arma 3 and Arma 3 Tools need to be ran at least once from Steam.</p>
                 <div class="info-divider-full"></div>
                 <h4 class="info-block-title">Useful Things</h4>
                 <p class="info-block-description">
                 <ul class="info-block-description">
-                    <li><a class="info-link" href="https://github.com/Westalgie/A3UExtender">Full Documentation</a></li>
+                    <li><a class="info-link" href="https://github.com/Antistasi-Ultimate-Community/a3ue-blank-template">A3UEBET</a> - A3UE Blank Extender Template</li>
+                    <li><a class="info-link" href="https://github.com/Westalgie/A3UExtender">A3UExtender</a> - Legacy Antistasi Ultimate Extender Example</li>
                     <li><a class="info-link"
                             href="https://steamcommunity.com/sharedfiles/filedetails/?id=3499977893">Advanced Developer
                             Tools</a></li>
                     <li><a class="info-link"
-                            href="https://gitlab.perfect-co.de/arma3/a3u-cargo-nodes-editor">A3U Cargo Nodes Editor (By UnseenKill)</a></li>
+                            href="https://gitlab.perfect-co.de/arma3/a3u-cargo-nodes-editor">A3U Cargo Nodes Editor</a> (By UnseenKill)</li>
                     <li><a class="info-link" href="https://paa.gruppe-adler.de/">https://paa.gruppe-adler.de/</a> (Image
                         > PAA. If converting multiple files, use ImageToPAA included in Arma 3 Tools)</li>
                     <li>Some helpful <a class="info-link"
@@ -338,6 +349,9 @@ this addAction ["copy", {[(_this select 0), "RHS", "Sniper Rifles"] call A3U_fnc
                     <li><a class="info-link"
                             href="https://marketplace.visualstudio.com/items?itemName=bux578.vscode-openlastrpt">Arma 3
                             - Open Last RPT</a> (Extension for vscode)</li>
+                    <li><a class="info-link"
+                            href="https://hemtt.dev/">HEMTT</a>
+                            - an opinionated Arma 3 build tool</li>
                 </ul>
                 </p>
             </div>
@@ -352,7 +366,9 @@ this addAction ["copy", {[(_this select 0), "RHS", "Sniper Rifles"] call A3U_fnc
     <!-- Footer Start -->
     <footer class="site-footer">
         <div class="footer-logo-container">
-            <img src="../images/Yellow.png" alt="Logo" class="footer-logo">
+            <img src="../images/logos/med/Yellow.webp"
+                srcset="../images/logos/sml/Yellow.webp 128w, ../images/logos/med/Yellow.webp 256w, ../images/logos/lrg/Yellow.webp 512w"
+                sizes="100px" alt="Logo" class="footer-logo" width="100" height="100">
         </div>
         <div class="footer-links">
             <a href="/About-Page/">ABOUT US</a>

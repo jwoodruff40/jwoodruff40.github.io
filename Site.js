@@ -1,24 +1,48 @@
 
 function resizeTextToFit(elements) {
-    elements.forEach(el => {
+    if (elements.length === 0) return;
+
+    // Phase 1: writes only (no interleaved reads yet, so this can't force a layout).
+    elements.forEach(el => { el.style.whiteSpace = 'nowrap'; });
+
+    // Phase 2: reads only, batched together so they force at most one shared layout
+    // instead of one per element.
+    const items = elements.map(el => {
         const container = el.parentElement;
-        let fontSize = 100; // Start large
-        el.style.fontSize = fontSize + 'px';
-        el.style.whiteSpace = 'nowrap';
-
-        const maxHeight = container.clientHeight; // container inner height
-        const maxWidth = container.clientWidth;  // container inner width
-
-        // For tooltips, apply a minimum font size
         const isTooltip = el.classList.contains('card-tooltip-text');
         const minFontSize = isTooltip ? 12 : 5; // Tooltips have a minimum of 12px for readability
-
-        // Resize text to fit both width and height of the container
-        while ((el.scrollHeight > maxHeight || el.scrollWidth > maxWidth) && fontSize > minFontSize) {
-            fontSize -= 1;
-            el.style.fontSize = fontSize + 'px';
-        }
+        return {
+            el,
+            maxHeight: container.clientHeight,
+            maxWidth: container.clientWidth,
+            lo: minFontSize,
+            hi: 100, // maxFontSize to start large
+            best: minFontSize
+        };
     });
+
+    // Phase 3: binary search every element's font size in lockstep — all the writes for
+    // a round happen before any of that round's reads, so each round forces at most one
+    // shared layout recalculation instead of one per element per iteration (previously
+    // up to N elements * ~7 iterations each, now just ~7 total for the whole page).
+    for (let round = 0; round < 7; round++) {
+        for (const item of items) {
+            if (item.lo > item.hi) continue;
+            item.mid = Math.floor((item.lo + item.hi) / 2);
+            item.el.style.fontSize = item.mid + 'px';
+        }
+        for (const item of items) {
+            if (item.lo > item.hi) continue;
+            if (item.el.scrollHeight > item.maxHeight || item.el.scrollWidth > item.maxWidth) {
+                item.hi = item.mid - 1;
+            } else {
+                item.best = item.mid;
+                item.lo = item.mid + 1;
+            }
+        }
+    }
+
+    items.forEach(item => { item.el.style.fontSize = item.best + 'px'; });
 }
 
 function resizeUITexts() {
